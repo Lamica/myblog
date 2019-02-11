@@ -10,7 +10,7 @@
     
     
     
-    <title>Archives | Lamicaの部落格</title>
+    <title>归档 | Lamicaの部落格</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -98,18 +98,13 @@
         </li>
         
         <li>
-            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
-            <a href="/about-me">关于我</a>
-        </li>
-        
-        <li>
             <i class="cube-icon cube-icon-" aria-hidden="true"></i>
             <a href="/">投食</a>
         </li>
         
         <li>
-            <i class="cube-icon cube-icon-" aria-hidden="true"></i>
-            <a href="/">对我说？</a>
+            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
+            <a href="/about-me">关于我</a>
         </li>
         
     </ul>
@@ -118,11 +113,11 @@
     <ul class="cube-menu-list">
         
         <li>
-            <a class="lrc-control">Open Lyrics</a>
+            <a class="lrc-control">打开歌词</a>
         </li>
         
         <li>
-            <a class="scroll-to-top">Top</a>
+            <a class="scroll-to-top">回到顶部</a>
         </li>
     </ul>
 </nav>
@@ -219,7 +214,7 @@
 
 <div class="cube-search cube-sidebar" id="cube-search">
     <div class="search-container">
-        <input type="text" placeholder="Search" class="cube-search-input" id="cube-search-input">
+        <input type="text" placeholder="搜索" class="cube-search-input" id="cube-search-input">
         <i class="cube-icon cube-icon-search cube-search-submit" aria-hidden="true"></i>
     </div>
     <!-- TODO 通过给window赋一个全局变量，通过脚本赋值 -->
@@ -234,7 +229,7 @@
 </script>
 <div class="cube-search-form">
     <div class="cube-search-control">
-        <input type="text" placeholder="Search" class="search-input">
+        <input type="text" placeholder="搜索" class="search-input">
         <a class="close-button">
             <i class="cube-icon cube-close" aria-hidden="true"></i>
         </a>
@@ -246,13 +241,37 @@
 <div class="cube-author cube-sidebar" id="cube-author">
     
     
+    <style>
+        @media(min-width: 768px) {
+            .cube-author img {
+                margin-top: 40px;
+                margin-bottom: 10px;
+            }
+        }
+        @media(max-width: 1120px) and (min-width: 768px) {
+            .cube-author img {
+                width: 128px;
+                height: 128px;
+            }
+        }
+        @media(min-width: 1120px) {
+            .cube-author img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+    
+    <img src="/images/avatar.png" alt="avatar" class="cube-avatar">
+    
+    
     <span>Lamica</span>
     
     
     <div class="count">
-        <a class="count articles"><span>1</span>Article</a>
-        <a class="count tags"><span>0</span>Tags</a>
-        <a class="count categories"><span>0</span>Categories</a>
+        <a class="count articles"><span>1</span>文章</a>
+        <a class="count tags"><span>0</span>标签</a>
+        <a class="count categories"><span>0</span>分类</a>
     </div>
 </div>
 
@@ -266,8 +285,8 @@
         window.musicModule = {}
         window.musicModule.musicConfig = '{"narrow":false,"autoplay":false,"showlrc":3,"theme":"#b7daff","mutex":true,"mode":"circulation","preload":"auto","listmaxheight":"513px","music":[{"title":"Dear friends","author":"TRIPLANE","url":"http://cube-1252774894.cosgz.myqcloud.com/music/source/TRIPLANE - Dear friends.mp3","lrc":"http://cube-1252774894.cosgz.myqcloud.com/music/lrc/Dear friends - TRIPLANE.lrc","pic":"http://cube-1252774894.cosgz.myqcloud.com/music/image/TRIPLANE - Dear friends.jpg"},{"title":"Butter-Fly","author":"和田光司","url":"http://cube-1252774894.cosgz.myqcloud.com/music/source/和田光司 - Butter-Fly (ピアノヴァージョン).mp3","lrc":"http://cube-1252774894.cosgz.myqcloud.com/music/lrc/Butter-Fly (ピアノヴァージョン) - 和田光司.lrc","pic":"http://cube-1252774894.cosgz.myqcloud.com/music/image/和田光司 - Butter-Fly (ピアノヴァージョン).jpg"},{"title":"宵闇花火","author":"葉月ゆら","url":"http://cube-1252774894.cosgz.myqcloud.com/music/source/葉月ゆら - 宵闇花火.mp3","lrc":"http://cube-1252774894.cosgz.myqcloud.com/music/lrc/宵闇花火 - 葉月ゆら.lrc","pic":"http://cube-1252774894.cosgz.myqcloud.com/music/image/葉月ゆら - 宵闇花火.jpg"}]}'
         window.musicModule.lrcConfig = {
-            open: 'Open Lyrics',
-            close: 'Close Lyrics'
+            open: '打开歌词',
+            close: '关闭歌词'
         }
     })(window)
 </script>
@@ -276,7 +295,7 @@
 
 <div class="cube-recent-posts cube-sidebar" id="cube-recent-posts">
     <div class="title">
-        <a>Recent Posts</a>
+        <a>近期文章</a>
     </div>
     <ul class="list">
         
@@ -307,7 +326,7 @@
 
 <div class="cube-links cube-sidebar" id="cube-links">
     <div class="title">
-        <a>Links</a>
+        <a>去找我</a>
     </div>
     <ul class="list">
         
@@ -350,7 +369,7 @@
 
 <div class="cube-friend-links cube-sidebar" id="cube-friend-links">
     <div class="title">
-        <a>Friend Links</a>
+        <a>友人</a>
     </div>
     <ul class="list">
         
@@ -393,10 +412,12 @@
 </div>
 <footer class="cube-footer">
     
-© 2017 Lamica
+© 2019 Lamica
 
 <br>
-Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+托管与 <a href="https://github.com/" target="_blank">GitHub</a>. <a href="https://www.azure.cn/zh-cn/" target="_blank">Microsoft Azure</a>提供CDN服务. <a href="https://tongji.baidu.com/web/welcome/login" target="_blank">百度统计</a>提供网站统计服务
+<br>
+由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动.&nbsp;Theme by <a href="https://github.com/Lamica" target="_blank">Zuqing</a>
 </footer>
 <!-- inject:script -->
 <script src="/js/script.js"></script>
