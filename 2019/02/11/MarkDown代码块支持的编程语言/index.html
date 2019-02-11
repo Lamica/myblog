@@ -10,7 +10,7 @@
     
     
     
-    <title>使用Xamarin实现串口通讯 | Lamicaの部落格</title>
+    <title>MarkDown代码块支持的编程语言 | Lamicaの部落格</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -182,7 +182,7 @@
     <div class="cube-content">
         <div class="cube-left">
             <div class="cube-article">
-    <h1 class="title">使用Xamarin实现串口通讯</h1>
+    <h1 class="title">MarkDown代码块支持的编程语言</h1>
     
     <div class="cube-article-header">
         <div class="cube-article-date">
@@ -193,21 +193,211 @@
         <div class="cube-article-tags">
     <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
     
-    <a href="/tags/Xamarin/">#Xamarin</a>
+    <a href="/tags/MarkDown/">#MarkDown</a>
     
 </div>
     </div>
     
     <div class="cube-article-content cube-markdown">
         
-        <p>前几天我在博客眼写了年度总结，然后有人说让我教一下他Xamarin串口通讯怎么做，其实跟java没有多大区别。</p>
-<p>记得我刚开始接到公司这个项目的时候很懵逼，我去看了别的安卓串口工具，都不行我当时是RS232串口，后来我就去Google Pay 下载了个串口工具，试了一下，正好可以，然后我看了它用了哪些开源库，终于被我发现了，于是我就像Xamarin有这个库吗，果不其然，老天救了我，我找到了。<br><a id="more"></a><br>第一步：使用Nuget去获取一个包：LusoVU.XamarinUsbSerialForAndroid 就是这个包！哈哈 哈哈<br><img src="https://www.cnblogs.com/images/cnblogs_com/fatsper/1388122/o_%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="LusoVU.XamarinUsbSerialForAndroid"></p>
-<p>第二步：<br>在OnCreate() 生命周期中进行如下操作：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取所有USB服务和已经连接的USB设备</span></span><br><span class="line">UsbManager manager = GetSystemService(Context.UsbService) <span class="keyword">as</span> UsbManager;</span><br><span class="line">IList&lt;IUsbSerialDriver&gt; availableDrivers = UsbSerialProber.DefaultProber.FindAllDrivers(manager);</span><br></pre></td></tr></table></figure></p>
-<p>最后一步：<br>写一个串口通讯的方法：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> 串口通讯</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span><span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span>串口通讯</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span><span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">UsbSerial</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//打开USB连接</span></span><br><span class="line">	IUsbSerialDriver driver = availableDrivers[<span class="number">0</span>];</span><br><span class="line">	UsbDeviceConnection connection = manager.OpenDevice(driver.Device);</span><br><span class="line">	<span class="keyword">if</span> (connection == <span class="literal">null</span>) </span><br><span class="line">	&#123;</span><br><span class="line">		RunOnUiThread(() =&gt;</span><br><span class="line">		                    &#123;</span><br><span class="line">		                        ConnUsbOrBluetooth.Text = <span class="string">"失败"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	);</span><br><span class="line">	sc.TextSpeak(<span class="string">"USB连接失败，请重启设备重试。"</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">RunOnUiThread(() =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    ConnUsbOrBluetooth.Text = <span class="string">"成功"</span>;</span><br><span class="line">ConnUsbOrBluetooth.Enabled = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">);</span><br><span class="line">sc.TextSpeak(<span class="string">"USB连接成功！"</span>);</span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(Query);</span><br><span class="line">t.Priority = System.Threading.ThreadPriority.Highest;</span><br><span class="line">t.Start();</span><br><span class="line"><span class="comment">//读取USB数据</span></span><br><span class="line">IUsbSerialPort port = driver.Ports[<span class="number">0</span>];</span><br><span class="line"><span class="comment">//串口信息  波特率 数据位 停止位 流控</span></span><br><span class="line">serialIoManager = <span class="keyword">new</span> SerialInputOutputManager(port) </span><br><span class="line">&#123;</span><br><span class="line">BaudRate = <span class="number">9600</span>,</span><br><span class="line">                    DataBits = <span class="number">7</span>,</span><br><span class="line">                    StopBits = StopBits.One,</span><br><span class="line">                    Parity = Parity.None,</span><br><span class="line">                &#125;;</span><br><span class="line">serialIoManager.Open(manager, <span class="number">1024</span>);</span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="comment">//获取数据</span></span><br><span class="line">serialIoManager.DataReceived += (sender, e) =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    sb.Append(System.Text.Encoding.Default.GetString(e.Data));</span><br><span class="line"><span class="keyword">if</span> (sb.Length &gt;= <span class="number">30</span>) </span><br><span class="line">&#123;</span><br><span class="line">	BlueData bd = UiBlueData;</span><br><span class="line">	bd(sb.ToString());</span><br><span class="line">	sb.Clear();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">;</span><br><span class="line">&#125;</span><br><span class="line">;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure></p>
-<p> 解释：<br> availableDrivers[0] 这里这个0就是说打开usb中的第一个设备。<br> //然后这里有部分是可以忽略的 像：TextSpeak() 与RunOnUiThread里的东西。一个是TTS的代码，另一个是为UI线程赋值的代码。<br> 重新开启现成的代码：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t = <span class="keyword">new</span> Thread(Query);</span><br><span class="line">t.Priority = System.Threading.ThreadPriority.Highest;</span><br><span class="line">t.Start();</span><br></pre></td></tr></table></figure>
-<p>这部分也可以忽略，是我项目里要用到的。<br> 接下来就是重点了，读取USB的数据，设置串口的信息：如波特率BaudRate,数据位：DataBits和停止位：StopBits，流控：Parity。<br>下面就是我接受数据的代码了，<br>由于串口不断发来数据，所以发放到 DataReceived事件中：并把获取到的数据30个长度一切割，从而拿到想要的数据。</p>
-<p>至此Xamarin的串口通讯就可以实现了，还有什么疑问，大家可以留言。 </p>
+        <p>markdown里对代码块的引用语法是三个撇[ <code>`</code> ],在其后可增加代码名称,比如java,js等标记该部分代码的类型.之后在页面展现的时候就可以高亮显示关键字了。<br>下面记载markdown支持哪些语言以及关键字：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>关键字</th>
+<th>调用的js</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AppleScript</td>
+<td>applescript</td>
+<td>shBrushAppleScript.js</td>
+<td></td>
+</tr>
+<tr>
+<td>ActionScript 3.0</td>
+<td>actionscript3 , as3</td>
+<td>shBrushAS3.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Shell</td>
+<td>bash , shell</td>
+<td>shBrushBash.js</td>
+<td></td>
+</tr>
+<tr>
+<td>ColdFusion</td>
+<td>coldfusion , cf</td>
+<td>shBrushColdFusion.js</td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>cpp , c</td>
+<td>shBrushCpp.js</td>
+<td></td>
+</tr>
+<tr>
+<td>C#</td>
+<td>c# , c-sharp , csharp</td>
+<td>shBrushCSharp.js</td>
+<td></td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>css</td>
+<td>shBrushCss.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Delphi</td>
+<td>delphi , pascal , pas</td>
+<td>shBrushDelphi.js</td>
+<td></td>
+</tr>
+<tr>
+<td>diff&amp;patch</td>
+<td>diff patch</td>
+<td>shBrushDiff.js</td>
+<td>用代码版本库时,遇到代码冲突,其语法就是这个</td>
+</tr>
+<tr>
+<td>Erlang</td>
+<td>erl , erlang</td>
+<td>shBrushErlang.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Groovy</td>
+<td>groovy</td>
+<td>shBrushGroovy.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Java</td>
+<td>java</td>
+<td>shBrushJava.js</td>
+<td></td>
+</tr>
+<tr>
+<td>JavaFX</td>
+<td>jfx , javafx</td>
+<td>shBrushJavaFX.js</td>
+<td></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>js , jscript , javascript</td>
+<td>shBrushJScript.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Perl</td>
+<td>perl , pl , Perl</td>
+<td>shBrushPerl.js</td>
+<td></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>php</td>
+<td>shBrushPhp.js</td>
+<td></td>
+</tr>
+<tr>
+<td>text</td>
+<td>text , plain</td>
+<td>shBrushPlain.js</td>
+<td>就是普通文本</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>py , python</td>
+<td>shBrushPython.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td>ruby , rails , ror , rb</td>
+<td>shBrushRuby.js</td>
+<td></td>
+</tr>
+<tr>
+<td>SASS&amp;SCSS</td>
+<td>sass , scss</td>
+<td>shBrushSass.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Scala</td>
+<td>scala</td>
+<td>shBrushScala.js</td>
+<td></td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>sql</td>
+<td>shBrushSql.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Visual Basic</td>
+<td>vb , vbnet</td>
+<td>shBrushVb.js</td>
+<td></td>
+</tr>
+<tr>
+<td>XML</td>
+<td>xml , xhtml , xslt , html</td>
+<td>shBrushXml.js</td>
+<td></td>
+</tr>
+<tr>
+<td>Objective C</td>
+<td>objc , obj-c</td>
+<td>shBrushObjectiveC.js</td>
+<td></td>
+</tr>
+<tr>
+<td>F#</td>
+<td>f# f-sharp , fsharp</td>
+<td>shBrushFSharp.js</td>
+<td></td>
+</tr>
+<tr>
+<td>xpp</td>
+<td>xpp , dynamics-xpp</td>
+<td>shBrushDynamics.js</td>
+<td></td>
+</tr>
+<tr>
+<td>R</td>
+<td>r , s , splus</td>
+<td>shBrushR.js</td>
+<td></td>
+</tr>
+<tr>
+<td>matlab</td>
+<td>matlab</td>
+<td>shBrushMatlab.js</td>
+<td></td>
+</tr>
+<tr>
+<td>swift</td>
+<td>swift</td>
+<td>shBrushSwift.js</td>
+<td></td>
+</tr>
+<tr>
+<td>GO</td>
+<td>go , golang</td>
+<td>shBrushGo.js</td>
+</tr>
+</tbody>
+</table>
 
     </div>
 </div>
@@ -215,17 +405,10 @@
 <div class="cube-article-nav">
     <ul>
         
-        <li class="prev">
-            <a href="/2019/02/11/MarkDown代码块支持的编程语言/">
-                <i class="cube-icon cube-prev" aria-hidden="true"></i>
-                MarkDown代码块支持的编程语言
-            </a>
-        </li>
-        
         
         <li class="next">
-            <a href="/2019/02/11/2019年展望计划-Lamica-2019-Year-Plan-：/">
-                2019年展望计划(Lamica 2019-Year Plan)：
+            <a href="/2019/02/11/使用Xamarin实现串口通讯/">
+                使用Xamarin实现串口通讯
                 <i class="cube-icon cube-next" aria-hidden="true"></i>
             </a>
         </li>
@@ -402,12 +585,12 @@
     <div class="cube-boxs">
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/categories/技术/">#技术</a>
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/职业生涯/">#职业生涯</a>
         </div>
         
