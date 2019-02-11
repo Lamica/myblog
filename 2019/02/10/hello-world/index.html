@@ -67,6 +67,11 @@
         </li>
         
         <li>
+            <i class="cube-icon cube-icon-" aria-hidden="true"></i>
+            <a href="/">实验室</a>
+        </li>
+        
+        <li>
             <i class="cube-icon cube-icon-archive" aria-hidden="true"></i>
             <a href="/archives">归档</a>
         </li>
@@ -84,6 +89,16 @@
         <li>
             <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
             <a href="/about-me">关于我</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-" aria-hidden="true"></i>
+            <a href="/">投食</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-" aria-hidden="true"></i>
+            <a href="/">对我说？</a>
         </li>
         
     </ul>
@@ -200,6 +215,25 @@
 
 <!-- TODO 根据theme.comment的内容进行入口选择 -->
 
+    <!-- 因为gitment里面也有gitment-container，所以这里就改为gitment-comment -->
+<div class="gitment-comment">
+    <div id="container"></div>
+</div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id default is location.href
+        owner: '{{ theme.gitment.github_user }}',
+        repo: '{{ theme.gitment.github_repo }}',
+        oauth: {
+            client_id: '9f0c0bcb622c668c5756',
+            client_secret: 'e5b3e1b8e68cd43d35269de352ec767ffbf4c59c',
+        },
+    })
+    gitment.render('container')
+</script>
+    
 
 
         </div>
@@ -305,7 +339,7 @@
             
             <img src="http://cube-1252774894.cosgz.myqcloud.com/links/GitHub.png">
             
-            <a href="https://github.com/ZEROKISEKI" target="_blank">GitHub</a>
+            <a href="https://github.com/Lamica" target="_blank">GitHub</a>
         </li>
         
         <li>
@@ -313,7 +347,7 @@
             
             <img src="http://cube-1252774894.cosgz.myqcloud.com/links/Coding.png">
             
-            <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+            <a href="https://www.cnblogs.com/lamica/" target="_blank">博客园</a>
         </li>
         
         <li>
@@ -358,7 +392,19 @@
         <li>
             <!-- TODO change avatar.png to friend.png-->
             <img src="/images/friend_links.jpg ">
-            <a href="https://aonosora.com/" target="_blank">咪西西の部落格</a>
+            <a href="http://www.hi-awsafe.com/" target="_blank">Sky安全团队 - www hi-awsafe com</a>
+        </li>
+        
+        <li>
+            <!-- TODO change avatar.png to friend.png-->
+            <img src="/images/friend_links.jpg ">
+            <a href="http://blog.dimpurr.com/" target="_blank">钉子の次元</a>
+        </li>
+        
+        <li>
+            <!-- TODO change avatar.png to friend.png-->
+            <img src="/images/friend_links.jpg ">
+            <a href="https://www.ixh.me/" target="_blank">Kirito&#39;s Blog</a>
         </li>
         
     </ul>
