@@ -10,7 +10,7 @@
     
     
     
-    <title>标签: 职业生涯 | Lamicaの部落格</title>
+    <title>使用Xamarin实现串口通讯 | Lamicaの部落格</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -181,29 +181,80 @@
     
     <div class="cube-content">
         <div class="cube-left">
-            <style>
-    @media(max-width: 768px) {
-        body {
-            background-color: #fff!important;
-        }
-    }
-</style>
-<div class="cube-archives">
+            <div class="cube-article">
+    <h1 class="title">使用Xamarin实现串口通讯</h1>
     
-    <div class="cube-archive" style="margin-top: 0;">
-        <h1 class="title">职业生涯</h1>
-        
-        <ul class="posts">
-            
-            <li class="post">
-                <a href="/2019/02/11/2019年展望计划-Lamica-2019-Year-Plan-：/">2019年展望计划(Lamica 2019-Year Plan)：</a>
-            </li>
-            
-        </ul>
-        
-    </div>
+    <div class="cube-article-header">
+        <div class="cube-article-date">
+            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+            <!-- moment.js对象 -->
+            2019-02-11
+        </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/Xamarin/">#Xamarin</a>
     
 </div>
+    </div>
+    
+    <div class="cube-article-content cube-markdown">
+        
+        <p>前几天我在博客眼写了年度总结，然后有人说让我教一下他Xamarin串口通讯怎么做，其实跟java没有多大区别。</p>
+<p>记得我刚开始接到公司这个项目的时候很懵逼，我去看了别的安卓串口工具，都不行我当时是RS232串口，后来我就去Google Pay 下载了个串口工具，试了一下，正好可以，然后我看了它用了哪些开源库，终于被我发现了，于是我就像Xamarin有这个库吗，果不其然，老天救了我，我找到了。<br><a id="more"></a><br>第一步：使用Nuget去获取一个包：LusoVU.XamarinUsbSerialForAndroid 就是这个包！哈哈 哈哈<br><a href="https://www.cnblogs.com/images/cnblogs_com/fatsper/1388122/o_%E6%97%A0%E6%A0%87%E9%A2%98.png" target="_blank" rel="noopener">LusoVU.XamarinUsbSerialForAndroid</a></p>
+<p>第二步：<br>在OnCreate() 生命周期中进行如下操作：<br><code>//获取所有USB服务和已经连接的USB设备
+UsbManager manager = GetSystemService(Context.UsbService) as UsbManager;
+IList&lt;IUsbSerialDriver&gt; availableDrivers = UsbSerialProber.DefaultProber.FindAllDrivers(manager);</code></p>
+<p>最后一步：<br>写一个串口通讯的方法：<br>`#region 串口通讯<br>///<summary><br>///串口通讯<br>///</summary><br>void UsbSerial()<br>{<br>    //打开USB连接<br>    IUsbSerialDriver driver = availableDrivers[0];<br>    UsbDeviceConnection connection = manager.OpenDevice(driver.Device);<br>    if (connection == null)<br>    {<br>        RunOnUiThread(() =&gt;<br>                            {<br>                                ConnUsbOrBluetooth.Text = “失败”;<br>    }<br>    );<br>    sc.TextSpeak(“USB连接失败，请重启设备重试。”);<br>    return;<br>}<br>RunOnUiThread(() =&gt;<br>                {<br>                    ConnUsbOrBluetooth.Text = “成功”;<br>ConnUsbOrBluetooth.Enabled = false;<br>}<br>);<br>sc.TextSpeak(“USB连接成功！”);<br>Thread t = new Thread(Query);<br>t.Priority = System.Threading.ThreadPriority.Highest;<br>t.Start();<br>//读取USB数据<br>IUsbSerialPort port = driver.Ports[0];<br>//串口信息  波特率 数据位 停止位 流控<br>serialIoManager = new SerialInputOutputManager(port)<br>{<br>BaudRate = 9600,<br>                    DataBits = 7,<br>                    StopBits = StopBits.One,<br>                    Parity = Parity.None,<br>                };<br>serialIoManager.Open(manager, 1024);<br>StringBuilder sb = new StringBuilder();<br>//获取数据<br>serialIoManager.DataReceived += (sender, e) =&gt;<br>                {<br>                    sb.Append(System.Text.Encoding.Default.GetString(e.Data));<br>if (sb.Length &gt;= 30)<br>{<br>    BlueData bd = UiBlueData;<br>    bd(sb.ToString());<br>    sb.Clear();<br>}<br>}<br>;<br>}<br>;</p>
+<p>#endregion`</p>
+<p> 解释：<br> availableDrivers[0] 这里这个0就是说打开usb中的第一个设备。<br> //然后这里有部分是可以忽略的 像：TextSpeak() 与RunOnUiThread里的东西。一个是TTS的代码，另一个是为UI线程赋值的代码。<br> 重新开启现成的代码：</p>
+<p><code>Thread t = new Thread(Query);
+t.Priority = System.Threading.ThreadPriority.Highest;
+t.Start();</code></p>
+<p>这部分也可以忽略，是我项目里要用到的。<br> 接下来就是重点了，读取USB的数据，设置串口的信息：如波特率BaudRate,数据位：DataBits和停止位：StopBits，流控：Parity。<br>下面就是我接受数据的代码了，<br>由于串口不断发来数据，所以发放到 DataReceived事件中：并把获取到的数据30个长度一切割，从而拿到想要的数据。</p>
+<p>至此Xamarin的串口通讯就可以实现了，还有什么疑问，大家可以留言。 </p>
+
+    </div>
+</div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        
+        <li class="next">
+            <a href="/2019/02/11/2019年展望计划-Lamica-2019-Year-Plan-：/">
+                2019年展望计划(Lamica 2019-Year Plan)：
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+    <!-- 因为gitment里面也有gitment-container，所以这里就改为gitment-comment -->
+<div class="gitment-comment">
+    <div id="container"></div>
+</div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id default is location.href
+        owner: 'Lamica',
+        repo: 'myblog',
+        oauth: {
+            client_id: '9f0c0bcb622c668c5756',
+            client_secret: 'e5b3e1b8e68cd43d35269de352ec767ffbf4c59c',
+        },
+    })
+    gitment.render('container')
+</script>
+    
+
+
         </div>
         <div class="cube-right">
             
@@ -336,7 +387,7 @@
     <div class="cube-boxs">
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/技术/">#技术</a>
         </div>
         
@@ -362,7 +413,7 @@
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/tags/职业生涯/">#职业生涯</a>
         </div>
         
