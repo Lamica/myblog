@@ -10,7 +10,7 @@
     
     
     
-    <title>关于我 | Lamicaの部落格</title>
+    <title>Windows利用SSH远程连接Linux(Debian)虚拟机 | Lamicaの部落格</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -182,23 +182,70 @@
     <div class="cube-content">
         <div class="cube-left">
             <div class="cube-article">
-    <h1 class="title">关于我</h1>
+    <h1 class="title">Windows利用SSH远程连接Linux(Debian)虚拟机</h1>
     
     <div class="cube-article-header">
-        <div class="cube-article-date page">
+        <div class="cube-article-date">
             <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
             <!-- moment.js对象 -->
-            2019-02-11
+            2020-02-19
         </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/技术/">#技术</a>
+    
+</div>
     </div>
     
     <div class="cube-article-content cube-markdown">
         
-        <p>网名：Lamica<br>性别：男性<br>生日：1996年10月20日<br>故乡：内蒙古赤峰市<br>住址：杭州市西湖区<br>职业：.Net开发工程师<br>喜欢的人：爱笑的女孩<br>个人崇拜：比尔盖茨<br>最喜欢的动漫：刀剑神域<br>本命：亚斯娜<br>自我介绍:<br>    DIYgod是我喜欢的程序员，他博客上有句话非常好：写代码是热爱，写到世界充满爱。我也是如此对代码充满着热情，最喜欢的技术是.NET，常用编程言C#,C++,VB.NET。对微软技术蜜汁崇拜。2015年开始计算机学习生涯，2017年11月份开始工作生涯。写代码不仅仅为了生活，更加是热爱。关于爱情方面，程序员的爱情一直成谜。而我能19年小年也就是1月28号，在Soul上遇到灵魂的另一半，并且深深的喜欢着，希望可以一辈子一起。关于生活，个人比较懒，喜欢看一些技术书籍，听纯音乐。吹口琴一直想作为爱好，却为行动。会画画，但是审美及烂，喜欢二刺螈，喜欢动漫追番。</p>
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><h2 id="1-Windows安装ssh"><a href="#1-Windows安装ssh" class="headerlink" title="1.Windows安装ssh"></a>1.Windows安装ssh</h2><h2 id="2-Linux网卡配置"><a href="#2-Linux网卡配置" class="headerlink" title="2.Linux网卡配置"></a>2.Linux网卡配置</h2><h2 id="3-连接"><a href="#3-连接" class="headerlink" title="3.连接"></a>3.连接</h2><h2 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4.注意事项"></a>4.注意事项</h2><h1 id="1-Windows安装ssh-1"><a href="#1-Windows安装ssh-1" class="headerlink" title="1.Windows安装ssh"></a>1.Windows安装ssh</h1><p>现在笔记本电脑一般都自带ssh,可以在命令行输入ssh查看是否安装<br><img src="../../../../images/_posts/20190707110610367.png" alt="查看ssh是否安装 查看ssh是否安装"></p>
+<h1 id="2-Linux网卡配置-1"><a href="#2-Linux网卡配置-1" class="headerlink" title="2.Linux网卡配置"></a>2.Linux网卡配置</h1><p>修改linux网卡配置信息，不多说，直接上图，简单易懂。<br><img src="../../../../images/_posts/20190707110855164.png" alt="修改linux网卡配置信息1 修改linux网卡配置信息1"></p>
+<p><img src="../../../../images/_posts/20190707110923716.png" alt="修改linux网卡配置信息2 修改linux网卡配置信息2"></p>
+<p>配置完之后需要重启网卡服务.<br>linux下     service netword restart<br>windows的NAT服务可能会关闭，建议检查一下。</p>
+<h1 id="3-连接-1"><a href="#3-连接-1" class="headerlink" title="3.连接"></a>3.连接</h1><p>利用ssh root(用户)@spark(ip)经行连接（）</p>
+<h1 id="4-注意事项-1"><a href="#4-注意事项-1" class="headerlink" title="4.注意事项"></a>4.注意事项</h1><p>保证windows 虚拟机NAT服务打开<br>关闭linux防火墙<br>windows保证单ip,连wifi时禁用本地连接。</p>
 
     </div>
 </div>
 
+<div class="cube-article-nav">
+    <ul>
+        
+        
+        <li class="next">
+            <a href="/2020/02/19/在Debian下搭建我的世界（Minecraft）服务器/">
+                在Debian下搭建我的世界（Minecraft）服务器
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+    <!-- 因为gitment里面也有gitment-container，所以这里就改为gitment-comment -->
+<div class="gitment-comment">
+    <div id="container"></div>
+</div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id default is location.href
+        owner: 'Lamica',
+        repo: 'myblog',
+        oauth: {
+            client_id: '9f0c0bcb622c668c5756',
+            client_secret: 'e5b3e1b8e68cd43d35269de352ec767ffbf4c59c',
+        },
+    })
+    gitment.render('container')
+</script>
+    
 
 
         </div>
@@ -377,17 +424,17 @@
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/职业生涯/">#职业生涯</a>
         </div>
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/categories/Minecraft/">#Minecraft</a>
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/Debian/">#Debian</a>
         </div>
         
@@ -413,7 +460,7 @@
         </div>
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/tags/Xamarin/">#Xamarin</a>
         </div>
         

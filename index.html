@@ -182,6 +182,39 @@
     <div class="cube-content">
         <div class="cube-left">
             
+<div class="cube-excerpt" id="cube-excerpt-Windows利用SSH远程连接Linux(Debian)虚拟机">
+    <header class="cube-excerpt-header">
+        <h1><a href="/2020/02/19/Windows利用SSH远程连接Linux-Debian/">Windows利用SSH远程连接Linux(Debian)虚拟机</a></h1>
+        <div class="cube-excerpt-header-msg">
+            <div class="cube-excerpt-date">
+                <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+                2020-02-19
+            </div>
+            <div class="cube-excerpt-tags">
+                <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+                
+                <a href="/tags/技术/" class="cube-excerpt-tag-link">#技术</a>
+                
+            </div>
+        </div>
+    </header>
+    <article class="cube-excerpt-entry cube-markdown">
+        
+        
+           <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><h2 id="1-Windows安装ssh"><a href="#1-Windows安装ssh" class="headerlink" title="1.Windows安装ssh"></a>1.Windows安装ssh</h2><h2 id="2-Linux网卡配置"><a href="#2-Linux网卡配置" class="headerlink" title="2.Linux网卡配置"></a>2.Linux网卡配置</h2><h2 id="3-连接"><a href="#3-连接" class="headerlink" title="3.连接"></a>3.连接</h2><h2 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4.注意事项"></a>4.注意事项</h2><h1 id="1-Windows安装ssh-1"><a href="#1-Windows安装ssh-1" class="headerlink" title="1.Windows安装ssh"></a>1.Windows安装ssh</h1><p>现在笔记本电脑一般都自带ssh,可以在命令行输入ssh查看是否安装<br><img src="../../../../images/_posts/20190707110610367.png" alt="查看ssh是否安装 查看ssh是否安装"></p>
+<h1 id="2-Linux网卡配置-1"><a href="#2-Linux网卡配置-1" class="headerlink" title="2.Linux网卡配置"></a>2.Linux网卡配置</h1><p>修改linux网卡配置信息，不多说，直接上图，简单易懂。<br><img src="../../../../images/_posts/20190707110855164.png" alt="修改linux网卡配置信息1 修改linux网卡配置信息1"></p>
+<p><img src="../../../../images/_posts/20190707110923716.png" alt="修改linux网卡配置信息2 修改linux网卡配置信息2"></p>
+<p>配置完之后需要重启网卡服务.<br>linux下     service netword restart<br>windows的NAT服务可能会关闭，建议检查一下。</p>
+<h1 id="3-连接-1"><a href="#3-连接-1" class="headerlink" title="3.连接"></a>3.连接</h1><p>利用ssh root(用户)@spark(ip)经行连接（）</p>
+<h1 id="4-注意事项-1"><a href="#4-注意事项-1" class="headerlink" title="4.注意事项"></a>4.注意事项</h1><p>保证windows 虚拟机NAT服务打开<br>关闭linux防火墙<br>windows保证单ip,连wifi时禁用本地连接。</p>
+
+        
+    </article>
+    <footer class="cube-excerpt-footer">
+        <a class="cube-excerpt-more" href="/2020/02/19/Windows利用SSH远程连接Linux-Debian/">Read More</a>
+    </footer>
+</div>
+
 <div class="cube-excerpt" id="cube-excerpt-在Debian下搭建我的世界（Minecraft）服务器">
     <header class="cube-excerpt-header">
         <h1><a href="/2020/02/19/在Debian下搭建我的世界（Minecraft）服务器/">在Debian下搭建我的世界（Minecraft）服务器</a></h1>
@@ -208,15 +241,19 @@
 <li>2.内存：4G</li>
 <li>3.操作系统：Debian GNU/Linux10(buster)</li>
 </ul>
-<h1 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h1><p>MC是用Java写的（当然现在也有别的语言写的版本），由于服务器端的MC是一个jar包，我们在配置之后通过运行jar包来开启服务器端，同时我们在客户端上打开后通过IP地址即可搜索并进入服务器。所以我们首先要先安装Java。通过下面的方法来安装：<br>安装OpenJDK 8 JDK:<br>    sudo apt install default-jdk<br>安装OpenJDK 8 JRE:<br>    sudo apt install default-jre</p>
-<h1 id="下载MC服务器端"><a href="#下载MC服务器端" class="headerlink" title="下载MC服务器端"></a>下载MC服务器端</h1><p>这里有一个要求，就是你和你的小伙伴要拥有同样版本的MC。不同的版本对应着不同的服务器端，所以我们要下载正确的版本。如何看MC版本呢，一般进入游戏后，游戏左下角会有版本显示。知道了版本号，那么用命令就可以下载对应版本的服务器端了。需要根据版本号补全命令格式：<br>    wget <a href="https://s3.amazonaws.com/Minecraft.Download/versions/" target="_blank" rel="noopener">https://s3.amazonaws.com/Minecraft.Download/versions/</a>&lt;你要下载的版本号&gt;/minecraft_server.&lt;你要下载的版本号&gt;.jar<br>例子：我这边选择安装了比较稳定的1.12版本<br>    wget <a href="https://s3.amazonaws.com/Minecraft.Download/versions/1.12/minecraft_server.1.12.jar" target="_blank" rel="noopener">https://s3.amazonaws.com/Minecraft.Download/versions/1.12/minecraft_server.1.12.jar</a><br>等下载提示结束后，minecraft_server.1.12.jar就躺在当前目录了。</p>
-<h1 id="MC服务器，启动！"><a href="#MC服务器，启动！" class="headerlink" title="MC服务器，启动！"></a>MC服务器，启动！</h1><p>我们就可以使用命令来运行MC服务器：<br>    java -Xms[初始启动分配内存] -Xmx[最大分配内存] -jar [jar包所在路径]/minecraft_server.[版本号].jar nogui<br>例子：<br>    java -Xms256m -Xmx512m -jar /home/mc/minecraft_server.1.12.jar nogui</p>
-<pre><code>关于命令最后一个参数 nogui，是分开的单词 no gui，意思是不需要图形界面，这样会大大减小内存的使用，如果你的Linux是有图形界面的，就可以不打这个 nogui。
-</code></pre><h1 id="启动成功"><a href="#启动成功" class="headerlink" title="启动成功"></a>启动成功</h1><p>上面的命令输入完成后，等待参数由0%一直到100%就启动完成啦！下面给出本人启动完成的后几行显示：<br>    1 [05:58:08] [Server thread/INFO]: Loaded 488 advancements<br>    2 [05:58:08] [Server thread/INFO]: Preparing start region for level 0<br>    3 [05:58:09] [Server thread/INFO]: Preparing spawn area: 0%<br>    4 [05:58:10] [Server thread/INFO]: Preparing spawn area: 41%<br>    5 [05:58:11] [Server thread/INFO]: Preparing spawn area: 76%<br>    6 [05:58:11] [Server thread/INFO]: Done (4.263s)! For help, type “help” or “?”</p>
-<h1 id="MC，Shell脚本启动！"><a href="#MC，Shell脚本启动！" class="headerlink" title="MC，Shell脚本启动！"></a>MC，Shell脚本启动！</h1><p>我们如果一直使用上面那一句启动的话是不是非常麻烦！每次都要复制粘贴，那么我们可以写一个简单的Shell脚本，放在jar包所在目录，每次启动的时候直接启动脚本就能进入游戏了。<br>    vim start-game.sh<br>编辑内容如下：<br>    1 #!/bin/sh<br>    2<br>    3 java -Xms256m -Xmx512m -jar /home/mc/minecraft_server.1.12.jar nogui<br>保存退出，每次启动游戏只需要运行下面命令即可:<br>    bash start-game.sh</p>
+<h1 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h1><p>MC是用Java写的（当然现在也有别的语言写的版本），由于服务器端的MC是一个jar包，我们在配置之后通过运行jar包来开启服务器端，同时我们在客户端上打开后通过IP地址即可搜索并进入服务器。所以我们首先要先安装Java。通过下面的方法来安装：<br>安装OpenJDK 8 JDK:<br>    sudo apt install default-jdk</p>
+<p>安装OpenJDK 8 JRE:<br>    sudo apt install default-jre</p>
+<h1 id="下载MC服务器端"><a href="#下载MC服务器端" class="headerlink" title="下载MC服务器端"></a>下载MC服务器端</h1><p>这里有一个要求，就是你和你的小伙伴要拥有同样版本的MC。不同的版本对应着不同的服务器端，所以我们要下载正确的版本。如何看MC版本呢，一般进入游戏后，游戏左下角会有版本显示。知道了版本号，那么用命令就可以下载对应版本的服务器端了。需要根据版本号补全命令格式：<br>    wget <a href="https://s3.amazonaws.com/Minecraft.Download/versions/" target="_blank" rel="noopener">https://s3.amazonaws.com/Minecraft.Download/versions/</a>&lt;你要下载的版本号&gt;/minecraft_server.&lt;你要下载的版本号&gt;.jar</p>
+<p>例子：我这边选择安装了比较稳定的1.12版本<br>    wget <a href="https://s3.amazonaws.com/Minecraft.Download/versions/1.12/minecraft_server.1.12.jar" target="_blank" rel="noopener">https://s3.amazonaws.com/Minecraft.Download/versions/1.12/minecraft_server.1.12.jar</a></p>
+<p>等下载提示结束后，minecraft_server.1.12.jar就躺在当前目录了。</p>
+<h1 id="MC服务器，启动！"><a href="#MC服务器，启动！" class="headerlink" title="MC服务器，启动！"></a>MC服务器，启动！</h1><p>我们就可以使用命令来运行MC服务器：<br>    java -Xms[初始启动分配内存] -Xmx[最大分配内存] -jar [jar包所在路径]/minecraft_server.[版本号].jar nogui</p>
+<p>例子：<br>    java -Xms256m -Xmx512m -jar /home/mc/minecraft_server.1.12.jar nogui<br>    关于命令最后一个参数 nogui，是分开的单词 no gui，意思是不需要图形界面，这样会大大减小内存的使用，如果你的Linux是有图形界面的，就可以不打这个 nogui。</p>
+<h1 id="启动成功"><a href="#启动成功" class="headerlink" title="启动成功"></a>启动成功</h1><p>上面的命令输入完成后，等待参数由0%一直到100%就启动完成啦！下面给出本人启动完成的后几行显示：<br>    1 [05:58:08] [Server thread/INFO]: Loaded 488 advancements<br>    2 [05:58:08] [Server thread/INFO]: Preparing start region for level 0<br>    3 [05:58:09] [Server thread/INFO]: Preparing spawn area: 0%<br>    4 [05:58:10] [Server thread/INFO]: Preparing spawn area: 41%<br>    5 [05:58:11] [Server thread/INFO]: Preparing spawn area: 76%<br>    6 [05:58:11] [Server thread/INFO]: Done (4.263s)! For help, type “help” or “?”</p>
+<h1 id="MC，Shell脚本启动！"><a href="#MC，Shell脚本启动！" class="headerlink" title="MC，Shell脚本启动！"></a>MC，Shell脚本启动！</h1><p>我们如果一直使用上面那一句启动的话是不是非常麻烦！每次都要复制粘贴，那么我们可以写一个简单的Shell脚本，放在jar包所在目录，每次启动的时候直接启动脚本就能进入游戏了。<br>    vim start-game.sh</p>
+<p>编辑内容如下：<br>    1 #!/bin/sh<br>    2<br>    3 java -Xms256m -Xmx512m -jar /home/mc/minecraft_server.1.12.jar nogui</p>
+<p>保存退出，每次启动游戏只需要运行下面命令即可:<br>    bash start-game.sh</p>
 <h1 id="MC服务器，关闭！"><a href="#MC服务器，关闭！" class="headerlink" title="MC服务器，关闭！"></a>MC服务器，关闭！</h1><p>按 Ctrl + C 来停止当前服务器</p>
-<h1 id="MC服务起最常见的启动失败"><a href="#MC服务起最常见的启动失败" class="headerlink" title="MC服务起最常见的启动失败"></a>MC服务起最常见的启动失败</h1><p>我们在第一次运行完jar包后，无论是否运行成功，都能发现当前目录下多出了一堆文件，运行失败的时候其实就是配置除了一点问题。我们在当前目录找一下文件：eula.txt<br>     vim eula.txt<br>按i键进入编辑模式，找到如下一行把 false 改为 true<br>     eula=false</p>
-<p>保存退出</p>
+<h1 id="MC服务起最常见的启动失败"><a href="#MC服务起最常见的启动失败" class="headerlink" title="MC服务起最常见的启动失败"></a>MC服务起最常见的启动失败</h1><p>我们在第一次运行完jar包后，无论是否运行成功，都能发现当前目录下多出了一堆文件，运行失败的时候其实就是配置除了一点问题。我们在当前目录找一下文件：eula.txt<br>    vim eula.txt<br>按i键进入编辑模式，找到如下一行把 false 改为 true<br>    eula=false<br>保存退出</p>
 <ul>
 <li>1.按 esc</li>
 <li>2.输入 :wq</li>
@@ -433,9 +470,9 @@
     
     
     <div class="count">
-        <a class="count articles"><span>4</span>文章</a>
-        <a class="count tags"><span>4</span>标签</a>
-        <a class="count categories"><span>3</span>分类</a>
+        <a class="count articles"><span>5</span>文章</a>
+        <a class="count tags"><span>5</span>标签</a>
+        <a class="count categories"><span>4</span>分类</a>
     </div>
 </div>
 
@@ -472,7 +509,7 @@
                     <span>1</span>
                 </p>
                 <p class="title">
-                    <a href="/2020/02/19/在Debian下搭建我的世界（Minecraft）服务器/" title="在Debian下搭建我的世界（Minecraft）服务器">在Debian下搭建我的世界（Minecraft）服务器</a>
+                    <a href="/2020/02/19/Windows利用SSH远程连接Linux-Debian/" title="Windows利用SSH远程连接Linux(Debian)虚拟机">Windows利用SSH远程连接Linux(Debian)虚拟机</a>
                 </p>
             </div>
             
@@ -486,7 +523,7 @@
                     <span>2</span>
                 </p>
                 <p class="title">
-                    <a href="/2019/02/11/MarkDown代码块支持的编程语言/" title="MarkDown代码块支持的编程语言">MarkDown代码块支持的编程语言</a>
+                    <a href="/2020/02/19/在Debian下搭建我的世界（Minecraft）服务器/" title="在Debian下搭建我的世界（Minecraft）服务器">在Debian下搭建我的世界（Minecraft）服务器</a>
                 </p>
             </div>
         </li>
@@ -499,7 +536,7 @@
                     <span>3</span>
                 </p>
                 <p class="title">
-                    <a href="/2019/02/11/使用Xamarin实现串口通讯/" title="使用Xamarin实现串口通讯">使用Xamarin实现串口通讯</a>
+                    <a href="/2019/02/11/MarkDown代码块支持的编程语言/" title="MarkDown代码块支持的编程语言">MarkDown代码块支持的编程语言</a>
                 </p>
             </div>
         </li>
@@ -510,6 +547,19 @@
             <div class="normal">
                 <p class="index">
                     <span>4</span>
+                </p>
+                <p class="title">
+                    <a href="/2019/02/11/使用Xamarin实现串口通讯/" title="使用Xamarin实现串口通讯">使用Xamarin实现串口通讯</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>5</span>
                 </p>
                 <p class="title">
                     <a href="/2019/02/11/2019年展望计划-Lamica-2019-Year-Plan-：/" title="2019年展望计划(Lamica 2019-Year Plan)：">2019年展望计划(Lamica 2019-Year Plan)：</a>
@@ -530,18 +580,23 @@
     <div class="cube-boxs">
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/技术/">#技术</a>
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/categories/职业生涯/">#职业生涯</a>
         </div>
         
         
         <div class="cube-box ">
             <a href="/categories/Minecraft/">#Minecraft</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/categories/Debian/">#Debian</a>
         </div>
         
     </div>
@@ -566,13 +621,18 @@
         </div>
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/tags/Xamarin/">#Xamarin</a>
         </div>
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/tags/Minecraft/">#Minecraft</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/技术/">#技术</a>
         </div>
         
     </div>
